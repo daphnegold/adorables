@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125055334) do
+ActiveRecord::Schema.define(version: 20151227171030) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "comment"
@@ -20,6 +20,20 @@ ActiveRecord::Schema.define(version: 20151125055334) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "hashtags", force: :cascade do |t|
+    t.string   "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hashtags_links", force: :cascade do |t|
+    t.integer "hashtag_id"
+    t.integer "link_id"
+  end
+
+  add_index "hashtags_links", ["hashtag_id"], name: "index_hashtags_links_on_hashtag_id"
+  add_index "hashtags_links", ["link_id"], name: "index_hashtags_links_on_link_id"
 
   create_table "links", force: :cascade do |t|
     t.string   "title"
