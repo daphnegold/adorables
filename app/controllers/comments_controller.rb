@@ -15,17 +15,7 @@ class CommentsController < ApplicationController
     Comment.last.update(user_id: 1) #session[:user_id])
     tags = comment_params[:comment].scan(/\B#\w+/)
     link = Link.find(params[:link_id])
-    unless tags.empty?
-      tags.each do |tag|
-        existing_hashtag = Hashtag.find_by_tag(tag)
-        if existing_hashtag.nil?
-          new_hashtag = Hashtag.create(tag: tag)
-          new_hashtag.links << link
-        else
-          existing_hashtag.links << link unless link.hashtags.include?(existing_hashtag)
-        end
-      end
-    end
+    Hashtag.add_hashtags(tags, link) unless tags.empty?
     redirect_to links_path(anchor: "link_#{params[:link_id]}")
   end
 
