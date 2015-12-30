@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "links#index"
   get "/auth/:provider/callback" => "sessions#create"
   get "/signout" => "sessions#destroy", :as => :signout
-  get "hashtags/:id" => "hashtags#show"
+  get "hashtags/:id" => "hashtags#show", :as => :hashtag
   get "hashtags" => "hashtags#index"
 
   resources :links do

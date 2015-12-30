@@ -1,0 +1,9 @@
+<div class="row">
+  <h1>Hashtags</h1>
+  <div class="col-sm-12">
+    <% @hashtags.each do |hashtag| %>
+      <%= link_to hashtag.tag, hashtag_path(hashtag.id) %>
+      <br>
+    <% end %>
+  </div>
+</div>
