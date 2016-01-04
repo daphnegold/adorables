@@ -1,0 +1,9 @@
+<div class="row">
+  <h1>Links with <%= @hashtag.tag %></h1>
+  <div class="col-sm-12">
+    <% @hashtag.links.each do |link| %>
+      <%= link_to link.title, link.url %>
+      <br>
+    <% end %>
+  </div>
+</div>

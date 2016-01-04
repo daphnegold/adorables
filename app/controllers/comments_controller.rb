@@ -13,7 +13,9 @@ class CommentsController < ApplicationController
   def create
     Comment.create(comment_params)
     Comment.last.update(user_id: session[:user_id])
-
+    tags = comment_params[:comment].scan(/\B#\w+/)
+    link = Link.find(params[:link_id])
+    Hashtag.add_hashtags(tags, link) unless tags.empty?
     redirect_to links_path(anchor: "link_#{params[:link_id]}")
   end
 

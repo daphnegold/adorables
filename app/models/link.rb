@@ -2,6 +2,7 @@ class Link < ActiveRecord::Base
   belongs_to :user
   has_many :comments
   has_many :votes
+  has_and_belongs_to_many :hashtags
 
   validates :url, format: {with: /\.(png|jpg|gif|jpeg)\Z/i}
 
