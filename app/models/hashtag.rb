@@ -5,8 +5,7 @@ class Hashtag < ActiveRecord::Base
     tags.each do |tag|
       existing_hashtag = Hashtag.find_by_tag(tag)
       if existing_hashtag.nil?
-        new_hashtag = Hashtag.create(tag: tag)
-        new_hashtag.links << link
+        new_hashtag = Hashtag.create(tag: tag, links: [link])
       else
         existing_hashtag.links << link unless link.hashtags.include?(existing_hashtag)
       end
